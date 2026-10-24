@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -21,6 +21,24 @@ def about():
 @app.route('/about-css')
 def about_css():
     return render_template('about-css.html')
+
+
+# Favorite course route: reads subject and course_number from the URL query string
+# Example: /favorite-course?subject=BMGT&course_number=407
+@app.route('/favorite-course')
+def favorite_course():
+    subject = request.args.get('subject')
+    course_number = request.args.get('course_number')
+    return render_template('favorite-course.html', subject=subject, course_number=course_number)
+
+
+# Contact route: shows the form on GET, shows a thank you summary on POST
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    if request.method == 'POST':
+        return render_template('contact.html', form_submitted=True)
+    else:
+        return render_template('contact.html')
 
 
 if __name__ == '__main__':

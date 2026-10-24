@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block page_title %}Favorite Course{% endblock %}
+
+{% block page_head %}Favorite Course{% endblock %}
+
+{% block page_content %}
+  {# Only print the course if both query parameters were passed in the URL #}
+  {% if subject and course_number %}
+    <p class="lead">You entered your favorite course as: <strong>{{ subject }}{{ course_number }}</strong></p>
+  {% else %}
+    <p class="lead">No course was entered. Try adding <code>?subject=BMGT&amp;course_number=407</code> to the URL.</p>
+  {% endif %}
+{% endblock %}

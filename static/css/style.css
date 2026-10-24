@@ -62,3 +62,24 @@ img.logo {
     width: 267px;
     height: 72px;
 }
+/* Page background */
+body {
+  background-color: #f4f5f7;
+}
+
+/* Navbar uses UMD red */
+.site-nav {
+  background-color: #c8102e;
+}
+
+/* Card that holds each page's content */
+.page-card {
+  border: none;
+  border-top: 4px solid #ffd200;
+}
+
+/* Footer */
+.site-footer {
+  background-color: #222222;
+  color: #ffffff;
+}

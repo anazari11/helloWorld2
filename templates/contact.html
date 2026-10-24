@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block page_title %}Contact{% endblock %}
+
+{% block page_head %}Contact Me{% endblock %}
+
+{% block page_content %}
+  {% if form_submitted %}
+    {# Thank you message that repeats back what the user entered #}
+    <h2 class="h4 text-success mb-3">Thank you for completing my form!</h2>
+    <div class="row">
+      <div class="col-md-6"><p class="fw-semibold">First Name:</p></div>
+      <div class="col-md-6"><p>{{ request.form.get('first_name') }}</p></div>
+      <div class="col-md-6"><p class="fw-semibold">Last Name:</p></div>
+      <div class="col-md-6"><p>{{ request.form.get('last_name') }}</p></div>
+      <div class="col-md-6"><p class="fw-semibold">Email Address:</p></div>
+      <div class="col-md-6"><p>{{ request.form.get('email') }}</p></div>
+      <div class="col-md-6"><p class="fw-semibold">Reason for Contact:</p></div>
+      <div class="col-md-6"><p>{{ request.form.get('reason') }}</p></div>
+    </div>
+    <a class="btn btn-outline-primary" href="{{ url_for('contact') }}">Complete form again</a>
+  {% else %}
+    {# Contact form, posts back to the same route #}
+    <form class="row g-3" action="{{ url_for('contact') }}" method="post">
+      <div class="col-md-6">
+        <label for="first_name" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="first_name" name="first_name" required>
+      </div>
+      <div class="col-md-6">
+        <label for="last_name" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="last_name" name="last_name" required>
+      </div>
+      <div class="col-12">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="col-12">
+        <label for="reason" class="form-label">Reason for Contact</label>
+        <select class="form-select" id="reason" name="reason" required>
+          <option value="" selected disabled>Choose one...</option>
+          <option value="Project Question">Project Question</option>
+          <option value="Networking">Networking</option>
+          <option value="General Feedback">General Feedback</option>
+        </select>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Submit Form</button>
+      </div>
+    </form>
+  {% endif %}
+{% endblock %}
